@@ -1,8 +1,11 @@
-@import './base.css';
-
 @font-face {
     font-family: 'DaysOne';
-    src: url('fonts/DaysOne-Regular.ttf'), 
+    src: url('fonts/DaysOne-Regular.ttf');
+}
+
+@font-face {
+    font-family: 'AvenirNext';
+    src: url('fonts/Avenir-Next-LT-Pro-Regular.otf');
 }
 
 :root {
@@ -19,6 +22,7 @@ body {
 
 a {
     text-decoration: none;
+    color: inherit;
 }
 
 a:visited {
