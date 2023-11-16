@@ -15,6 +15,11 @@ const router = createRouter({
             component: () => import('../views/CalculatorView.vue')
         },
         {
+            path: '/tic-tac-toe',
+            name: 'tic-tac-toe',
+            component: () => import('../views/TicTacToeView.vue')
+        },
+        {
             path: '/about',
             name: 'about',
             // route level code-splitting

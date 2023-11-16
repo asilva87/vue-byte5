@@ -23,6 +23,10 @@ import { RouterLink, RouterView } from 'vue-router'
                     </span>
 
                     <span class="navbar__item">
+                        <RouterLink to="/tic-tac-toe">Tic-Tac-Toe</RouterLink>
+                    </span>
+
+                    <span class="navbar__item">
                         <RouterLink to="/about">About</RouterLink>
                     </span>
 
@@ -72,7 +76,7 @@ import { RouterLink, RouterView } from 'vue-router'
 
 .navbar__item__logo {
     background-color: white;
-    padding: 5px;
+    padding: 5px 10px;
     border-radius: 10px;
     font-size: 1.2rem;
     min-width: 98px;
