@@ -13,5 +13,5 @@ export default defineConfig({
       '@': fileURLToPath(new URL('./src', import.meta.url))
     }
   },
-  base: 'vue-byte5'
+  base: `https://github.com/asilva87/vue-byte5`
 })
