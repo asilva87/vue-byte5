@@ -221,6 +221,7 @@ const checkForExhaustGameOver = (): boolean => {
     font-size: 1.5rem;
     margin: 1rem auto;
     transition: 1s;
+    white-space: nowrap;
 }
 
 .restart-button {
