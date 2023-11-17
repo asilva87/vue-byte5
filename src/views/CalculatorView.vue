@@ -1,5 +1,4 @@
 <script setup lang="ts">
-// I'm avoid using "eval" due to it being considered a security threat
 import { ref } from 'vue'
 
 enum Operations {
@@ -13,7 +12,9 @@ enum Operations {
     MODULO = 'MODULO',
     ROOT = 'ROOT',
     SQUARED = 'SQUARED',
-    NO_OPERATION = 'NO_OPERATION'
+    NO_OPERATION = 'NO_OPERATION',
+    PI = 'PI',
+    PERCENTAGE = 'PERCENTAGE'
 }
 
 const prevValue = ref('0')
@@ -21,6 +22,18 @@ const curValue = ref('0')
 const thereWasOperation = ref(false)
 const curOperation = ref(Operations.NO_OPERATION)
 const firstRun = ref(true)
+
+const formatNumber = (num: number): string => {
+    let result = num.toString();
+    if (result.length > 12) {
+        if (num > 999999999999 || num < -999999999999) {
+            result = num.toExponential(5);  // Use exponential notation for very large numbers
+        } else {
+            result = num.toFixed(11 - Math.floor(num).toString().length);
+        }
+    }
+    return result;
+}
 
 const calcSimpleOperation = (operation: Operations, value1: number, value2: number): number => {
     switch (operation) {
@@ -32,28 +45,23 @@ const calcSimpleOperation = (operation: Operations, value1: number, value2: numb
             return value1 * value2
         case Operations.DIV:
             return value1 / value2
-        case Operations.SQUARED:
-            return value1 * value1
-        case Operations.ROOT:
-            return Math.sqrt(value1)
         case Operations.MODULO:
             return value1 % value2
+        default:
+            return 0
     }
-
-    return 0
 }
 
 const keyPress = (keyValue: string | Operations) => {
     if (Number.isInteger(Number(keyValue)) || keyValue === '.') {
         if (curValue.value === '0' || thereWasOperation.value) {
-            curValue.value = keyValue
+            curValue.value = keyValue.toString()
             thereWasOperation.value = false
-        } else {
+        } else if (curValue.value.length < 12) {
             curValue.value += keyValue
         }
     } else {
         switch (keyValue) {
-            // Screen/memory functions
             case Operations.CLEAR_SCREEN:
                 curValue.value = '0'
                 break
@@ -63,35 +71,44 @@ const keyPress = (keyValue: string | Operations) => {
                 curOperation.value = Operations.NO_OPERATION
                 thereWasOperation.value = false
                 break
-            // Operations
             case Operations.ADD:
             case Operations.SUB:
             case Operations.MULT:
             case Operations.DIV:
             case Operations.MODULO:
-            case Operations.ROOT:
-            case Operations.SQUARED:
-                thereWasOperation.value = true
-                curOperation.value = keyValue
-                prevValue.value = curValue.value
-
-                if (!firstRun.value) {
-                    prevValue.value = curValue.value = calcSimpleOperation(
+                if (curOperation.value !== Operations.NO_OPERATION && !firstRun.value) {
+                    const result = calcSimpleOperation(
                         curOperation.value,
                         Number(prevValue.value),
                         Number(curValue.value)
-                    ).toString()
-                } else {
-                    firstRun.value = false
+                    )
+                    curValue.value = formatNumber(result)
                 }
+                curOperation.value = keyValue
+                prevValue.value = curValue.value
+                thereWasOperation.value = true
+                firstRun.value = false
+                break
+            case Operations.SQUARED:
+                curValue.value = formatNumber(Number(curValue.value) ** 2);
+                break
+            case Operations.ROOT:
+                curValue.value = formatNumber(Math.sqrt(Number(curValue.value)));
+                break
+            case Operations.PERCENTAGE:
+                curValue.value = formatNumber(Number(curValue.value) / 100);
+                break
+            case Operations.PI:
+                curValue.value = Math.PI.toFixed(12).toString()
                 break
             case Operations.EQUALS:
                 if (curOperation.value !== Operations.NO_OPERATION) {
-                    curValue.value = calcSimpleOperation(
+                    const result = calcSimpleOperation(
                         curOperation.value,
                         Number(prevValue.value),
                         Number(curValue.value)
-                    ).toString()
+                    )
+                    curValue.value = formatNumber(result)
                     curOperation.value = Operations.NO_OPERATION
                     prevValue.value = '0'
                     firstRun.value = true
@@ -100,23 +117,19 @@ const keyPress = (keyValue: string | Operations) => {
                 break
         }
     }
-
-    console.log(
-        `prevValue: ${prevValue.value} | curValue: ${curValue.value} | curOperation: ${curOperation.value} | thereWasOperation: ${thereWasOperation.value}`
-    )
 }
 </script>
+
 
 <template>
     <main>
         <div class="calc">
             <div class="calc__display">{{ curValue }}</div>
 
-            <div class="calc__key-row">
-                <button class="calc__key-row__key">&lt;</button>
-                <button class="calc__key-row__key">(</button>
-                <button class="calc__key-row__key">)</button>
-                <button class="calc__key-row__key">mod</button>
+            <div class="calc__key-row" style="justify-content: flex-end">
+                <button @click="keyPress(Operations.CLEAR_SCREEN)" class="calc__key-row__key">
+                    CE
+                </button>
                 <button @click="keyPress(Operations.CLEAR)" class="calc__key-row__key">C</button>
             </div>
             <div class="calc__key-row">
@@ -132,7 +145,7 @@ const keyPress = (keyValue: string | Operations) => {
                 <button @click="keyPress(Operations.DIV)" class="calc__key-row__key">
                     &divide;
                 </button>
-                <button class="calc__key-row__key">&#960;</button>
+                <button @click="keyPress(Operations.PI)" class="calc__key-row__key">&#960;</button>
             </div>
             <div class="calc__key-row">
                 <button @click="keyPress('4')" class="calc__key-row__key calc__key-row__key--digit">
@@ -173,7 +186,9 @@ const keyPress = (keyValue: string | Operations) => {
                     0
                 </button>
                 <button @click="keyPress('.')" class="calc__key-row__key">.</button>
-                <button class="calc__key-row__key">&percnt;</button>
+                <button @click="keyPress(Operations.PERCENTAGE)" class="calc__key-row__key">
+                    &percnt;
+                </button>
                 <button @click="keyPress(Operations.ADD)" class="calc__key-row__key">&plus;</button>
                 <button
                     @click="keyPress(Operations.EQUALS)"
@@ -204,6 +219,7 @@ const keyPress = (keyValue: string | Operations) => {
     padding: 0.5rem;
     padding-top: 0.8rem;
     margin-bottom: 1rem;
+    max-width: 290px;
 }
 
 .calc__key-row {
