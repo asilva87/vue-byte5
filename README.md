@@ -1,46 +1,17 @@
-# vue-byte5
+## Simple Vue Practice App
 
-This template should help get you started developing with Vue 3 in Vite.
+This is an app written in Vue that I made in order to show my interest in working for byte5, as well as showing that I learn fast and am actually willing to learn new stuff without resistance.
 
-## Recommended IDE Setup
+This app is not meant to be a showcase of any best practices be it logic, style, structure, etc, although I tried, in the 1 day I had to make it, to write it as best as I could.
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+### Main page
+<img  src="/src/assets/screenshots/main.png" alt="Main page" />
 
-## Type Support for `.vue` Imports in TS
+### Calculator
+<img src="/src/assets/screenshots/calculator.png" alt="Calculator page" />
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin) to make the TypeScript language service aware of `.vue` types.
+### Tic-Tac-Toe Game
+<img src="/src/assets/screenshots/tictactoe.png" alt="Tic-Tac-Toe game page" />
 
-If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has also implemented a [Take Over Mode](https://github.com/johnsoncodehk/volar/discussions/471#discussioncomment-1361669) that is more performant. You can enable it by the following steps:
-
-1. Disable the built-in TypeScript Extension
-    1) Run `Extensions: Show Built-in Extensions` from VSCode's command palette
-    2) Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
-2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
-
-## Project Setup
-
-```sh
-npm install
-```
-
-### Compile and Hot-Reload for Development
-
-```sh
-npm run dev
-```
-
-### Type-Check, Compile and Minify for Production
-
-```sh
-npm run build
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
-```
+### About me
+<img src="/src/assets/screenshots/about-me.png" alt="About me page" />
