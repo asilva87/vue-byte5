@@ -15,8 +15,8 @@ const router = createRouter({
             component: () => import('../views/CalculatorView.vue')
         },
         {
-            path: '/tic-tac-toe',
-            name: 'tic-tac-toe',
+            path: '/tictactoe',
+            name: 'tictactoe',
             component: () => import('../views/TicTacToeView.vue')
         },
         {

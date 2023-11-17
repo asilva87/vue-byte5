@@ -24,16 +24,17 @@ import { RouterLink, RouterView } from 'vue-router'
                     </span>
 
                     <span class="navbar__item">
-                        <RouterLink to="/tic-tac-toe">Tic-Tac-Toe</RouterLink>
+                        <RouterLink to="/tictactoe">
+                            <span>TicTacToe</span>
+                        </RouterLink>
                     </span>
 
                     <span class="navbar__item">
                         <RouterLink to="/about">About</RouterLink>
                     </span>
 
-                    <span class="navbar__item__sentence">
-                        Made with <span style="color: var(--red)">&#9825;</span> for
-                        <span style="color: var(--blue)">byte5</span>
+                    <span class="navbar__item">
+                        Made with <span style="color: var(--red)">&#9825;</span> for <span style="color: var(--blue)">byte5</span>
                     </span>
                 </div>
             </nav>
@@ -82,10 +83,29 @@ import { RouterLink, RouterView } from 'vue-router'
     margin-bottom: 10vh;
     display: flex;
     align-items: center;
+    justify-content: space-between;
 }
 
 .navbar__item {
     margin-right: 1rem;
+    position: relative;
+    z-index: 10;
+}
+
+/* Adjust the style for small screens */
+@media screen and (max-width: 768px) {
+    .navbar {
+        flex-direction: column; /* Change to a column layout on small screens */
+        align-items: center;
+    }
+
+    .navbar__links {
+        margin-top: 1rem; /* Add some spacing between items on small screens */
+    }
+
+    .navbar__item {
+        margin: 0 5px; /* Remove right margin for items on small screens */
+    }
 }
 
 .navbar__item__logo {
@@ -99,10 +119,6 @@ import { RouterLink, RouterView } from 'vue-router'
 
 .navbar__item__logo-vue {
     color: var(--vue-green);
-}
-
-.navbar__item__sentence {
-    align-self: flex-end;
 }
 
 .byte5-logo {
