@@ -7,6 +7,7 @@ import { RouterLink, RouterView } from 'vue-router'
         <header>
             <!-- <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" /> -->
             <!-- <HelloWorld msg="You did it!" /> -->
+            <div id="logo-circle"></div>
 
             <nav class="navbar">
                 <span class="navbar__item navbar__item__logo">
@@ -56,10 +57,23 @@ import { RouterLink, RouterView } from 'vue-router'
     border-radius: 10px;
     height: 100%;
     display: flex;
-    padding: 3rem;
+    padding: 2rem;
     display: flex;
     flex-direction: column;
     color: var(--dark-blue);
+    max-width: 1024px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#logo-circle {
+    position: absolute;
+    width: 22rem;
+    height: 22rem;
+    background-color: rgba(30, 155, 215, 0.75);
+    border-radius: 50%;
+    top: -9rem;
+    left: -7rem;
 }
 
 .navbar {
@@ -80,6 +94,7 @@ import { RouterLink, RouterView } from 'vue-router'
     border-radius: 10px;
     font-size: 1.2rem;
     min-width: 98px;
+    z-index: 10;
 }
 
 .navbar__item__logo-vue {
