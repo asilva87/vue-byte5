@@ -43,7 +43,7 @@ const checkForWin = (): boolean => {
     for (let i = 0; i < localBoard.length; i++) {
         if (rows[i].length === 1 && rows[i][0] === currentPlayer.value) {
             gameOver.value = true
-            winner.value  = currentPlayer.value
+            winner.value = currentPlayer.value
             return true
         }
     }
@@ -89,7 +89,7 @@ const restartGame = (): void => {
     board.value = [
         ['', '', ''],
         ['', '', ''],
-        ['', '', ''],
+        ['', '', '']
     ]
     gameOver.value = false
     gameOverDueToExhaustion.value = false
@@ -113,46 +113,46 @@ const checkForExhaustGameOver = (): boolean => {
             <div class="board__row__cell">{{ row[2] }}</div>
         </div> -->
 
-        <div class="game-info">Current player: <span class="blue">{{ currentPlayer }}</span></div>
+        <div class="game-info">
+            Current player: <span class="blue">{{ currentPlayer }}</span>
+        </div>
 
         <div class="board">
             <!-- Not using for-loop due to each cell having their own specific styling. -->
-        <div class="board__row">
-            <div @click="handleTurn([0, 0])" class="board__row__cell">{{ board[0][0] }}</div>
-            <div @click="handleTurn([0, 1])" class="board__row__cell" id="tc">
-                {{ board[0][1] }}
+            <div class="board__row">
+                <div @click="handleTurn([0, 0])" class="board__row__cell">{{ board[0][0] }}</div>
+                <div @click="handleTurn([0, 1])" class="board__row__cell" id="tc">
+                    {{ board[0][1] }}
+                </div>
+                <div @click="handleTurn([0, 2])" class="board__row__cell">{{ board[0][2] }}</div>
             </div>
-            <div @click="handleTurn([0, 2])" class="board__row__cell">{{ board[0][2] }}</div>
-        </div>
 
-        <div class="board__row">
-            <div @click="handleTurn([1, 0])" class="board__row__cell" id="cl">
-                {{ board[1][0] }}
+            <div class="board__row">
+                <div @click="handleTurn([1, 0])" class="board__row__cell" id="cl">
+                    {{ board[1][0] }}
+                </div>
+                <div @click="handleTurn([1, 1])" class="board__row__cell" id="cc">
+                    {{ board[1][1] }}
+                </div>
+                <div @click="handleTurn([1, 2])" class="board__row__cell" id="cr">
+                    {{ board[1][2] }}
+                </div>
             </div>
-            <div @click="handleTurn([1, 1])" class="board__row__cell" id="cc">
-                {{ board[1][1] }}
-            </div>
-            <div @click="handleTurn([1, 2])" class="board__row__cell" id="cr">
-                {{ board[1][2] }}
-            </div>
-        </div>
 
-        <div class="board__row">
-            <div @click="handleTurn([2, 0])" class="board__row__cell">{{ board[2][0] }}</div>
-            <div @click="handleTurn([2, 1])" class="board__row__cell" id="bc">
-                {{ board[2][1] }}
+            <div class="board__row">
+                <div @click="handleTurn([2, 0])" class="board__row__cell">{{ board[2][0] }}</div>
+                <div @click="handleTurn([2, 1])" class="board__row__cell" id="bc">
+                    {{ board[2][1] }}
+                </div>
+                <div @click="handleTurn([2, 2])" class="board__row__cell">{{ board[2][2] }}</div>
             </div>
-            <div @click="handleTurn([2, 2])" class="board__row__cell">{{ board[2][2] }}</div>
-        </div>
         </div>
 
         <div class="game-info">
             <span v-if="gameOver && !gameOverDueToExhaustion">
                 Player <span class="blue">{{ winner }}</span> wins!
             </span>
-            <span v-if="gameOverDueToExhaustion">
-                No one wins.
-            </span>
+            <span v-if="gameOverDueToExhaustion"> No one wins. </span>
         </div>
         <button @click="restartGame" v-if="gameOver" class="restart-button">Restart</button>
     </main>

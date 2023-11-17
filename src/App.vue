@@ -32,7 +32,8 @@ import { RouterLink, RouterView } from 'vue-router'
                     </span>
 
                     <span class="navbar__item">
-                        Made with <span style="color: var(--red)">&#9825;</span> for <span style="color: var(--blue)">byte5</span>
+                        Made with <span style="color: var(--red)">&#9825;</span> for
+                        <span style="color: var(--blue)">byte5</span>
                     </span>
                 </div>
             </nav>
