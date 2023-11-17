@@ -5,8 +5,6 @@ import { RouterLink, RouterView } from 'vue-router'
 <template>
     <main id="body">
         <header>
-            <!-- <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" /> -->
-            <!-- <HelloWorld msg="You did it!" /> -->
             <div id="logo-circle"></div>
 
             <nav class="navbar">
@@ -77,6 +75,21 @@ import { RouterLink, RouterView } from 'vue-router'
     left: -7rem;
 }
 
+@media screen and (min-width: 1025px) {
+    #logo-circle {
+        position: relative;
+        float: left;
+        top: -12rem;
+    }
+
+    .navbar {
+        position: absolute;
+    }
+
+    .view {
+        margin-top: -12rem;
+    }
+}
 .navbar {
     font-family: 'DaysOne';
     color: var(--dark-blue);
