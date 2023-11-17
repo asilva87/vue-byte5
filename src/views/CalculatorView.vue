@@ -24,15 +24,15 @@ const curOperation = ref(Operations.NO_OPERATION)
 const firstRun = ref(true)
 
 const formatNumber = (num: number): string => {
-    let result = num.toString();
+    let result = num.toString()
     if (result.length > 12) {
         if (num > 999999999999 || num < -999999999999) {
-            result = num.toExponential(5);  // Use exponential notation for very large numbers
+            result = num.toExponential(5) // Use exponential notation for very large numbers
         } else {
-            result = num.toFixed(11 - Math.floor(num).toString().length);
+            result = num.toFixed(11 - Math.floor(num).toString().length)
         }
     }
-    return result;
+    return result
 }
 
 const calcSimpleOperation = (operation: Operations, value1: number, value2: number): number => {
@@ -90,13 +90,13 @@ const keyPress = (keyValue: string | Operations) => {
                 firstRun.value = false
                 break
             case Operations.SQUARED:
-                curValue.value = formatNumber(Number(curValue.value) ** 2);
+                curValue.value = formatNumber(Number(curValue.value) ** 2)
                 break
             case Operations.ROOT:
-                curValue.value = formatNumber(Math.sqrt(Number(curValue.value)));
+                curValue.value = formatNumber(Math.sqrt(Number(curValue.value)))
                 break
             case Operations.PERCENTAGE:
-                curValue.value = formatNumber(Number(curValue.value) / 100);
+                curValue.value = formatNumber(Number(curValue.value) / 100)
                 break
             case Operations.PI:
                 curValue.value = Math.PI.toFixed(12).toString()
@@ -119,7 +119,6 @@ const keyPress = (keyValue: string | Operations) => {
     }
 }
 </script>
-
 
 <template>
     <main>
