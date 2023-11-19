@@ -39,7 +39,7 @@
 <style>
 .page-description {
     font-family: 'AvenirNext';
-    margin: 0 5rem;
+    margin: 2rem 5rem;
 }
 
 .im-no-jr-alert {
