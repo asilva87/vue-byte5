@@ -55,7 +55,7 @@ import { RouterLink, RouterView } from 'vue-router'
         rgba(230, 230, 230, 1) 100%
     );
     border-radius: 10px;
-    height: 100%;
+    height: calc(100% - 3rem);
     display: flex;
     padding: 2rem;
     display: flex;
@@ -64,6 +64,7 @@ import { RouterLink, RouterView } from 'vue-router'
     max-width: 1024px;
     margin-left: auto;
     margin-right: auto;
+    overflow-y: scroll;
 }
 
 #logo-circle {

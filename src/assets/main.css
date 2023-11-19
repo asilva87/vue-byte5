@@ -35,7 +35,8 @@ a:hover {
 }
 
 #app {
-    height: calc(100vh - 4rem);
+    height: calc(100vh - 3rem);
     width: calc(100vw - 2rem);
     padding: 1rem;
+    overflow-y: hidden;
 }
