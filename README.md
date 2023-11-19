@@ -1,4 +1,5 @@
 ## Simple Vue Practice App
+http://vue-byte5.s3-website.eu-north-1.amazonaws.com/
 
 ### How to run
 Simply clone the project and run `npm run dev`.
